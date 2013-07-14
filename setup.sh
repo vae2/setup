@@ -2,6 +2,9 @@
 # Simple setup.sh for configuring Ubuntu 12.04 LTS EC2 instance
 # for headless setup. 
 
+# Fail on any errors
+set -e
+
 # Install nvm: node-version manager
 # https://github.com/creationix/nvm
 sudo apt-get install -y git-core
@@ -41,3 +44,13 @@ ln -sb dotfiles/.bashrc .
 ln -sb dotfiles/.bashrc_custom .
 ln -sf dotfiles/.emacs.d .
 
+# Heroku setup
+echo "----Installing Heroku----"
+wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
+
+echo "----Please enter Heroku credentials----"
+heroku login
+
+echo "----Creating ssh keys and adding to Heroku----"
+ssh-keygen -t rsa
+heroku keys:add
