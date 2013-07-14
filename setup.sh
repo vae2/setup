@@ -54,3 +54,8 @@ heroku login
 echo "----Creating ssh keys and adding to Heroku----"
 ssh-keygen -t rsa
 heroku keys:add
+
+# Configure git for development work
+git config --global user.name "Vincent Emanuele"
+git config --global user.email "vincent.emanuele@gmail.com"
+git config --global --add color.ui true
